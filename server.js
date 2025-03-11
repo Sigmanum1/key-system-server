@@ -4,13 +4,19 @@ const bodyParser = require('body-parser');
 const atob = require('atob');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use dynamic port for hosting platforms
 
 const VALID_KEYS = new Set(["SIGMA-"]); // Example prefix
 
 app.use(cors());
 app.use(bodyParser.json());
 
+// This is the route for the root path ("/")
+app.get('/', (req, res) => {
+    res.send('Server is running!'); // You can customize this message
+});
+
+// Key validation route
 app.post('/validate-key', (req, res) => {
     const { key } = req.body;
 
