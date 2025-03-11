@@ -12,6 +12,11 @@ const VALID_KEYS = new Set(["SIGMA-"]); // Example prefix
 app.use(cors());
 app.use(bodyParser.json());
 
+// Root route to test server
+app.get('/', (req, res) => {
+    res.send('Server is running!'); // This responds to a GET request on "/"
+});
+
 // Route to generate the key and display it
 app.get('/generate-key', (req, res) => {
     const key = generateKey(); // Generate the key
